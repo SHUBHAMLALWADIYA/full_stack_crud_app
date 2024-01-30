@@ -12,6 +12,11 @@ dotenv.config();
 
 const auth=async(req,res,next)=>{
  
+    const cookieOption={
+        httpOnly:true,
+        secure:true,
+        sameSite:'none'
+    }
     const accesstoken=req.cookies.accesstoken;
     const refreshtoken=req.cookies.refreshtoken;
     try {
@@ -51,7 +56,7 @@ const auth=async(req,res,next)=>{
                         if (decoded) {
                             const accesstoken = jwt.sign({userId:decoded.userId,username:decoded.username}, process.env.accessToken_SecreteKey, {expiresIn: "15m"});
                            
-                            res.cookie("accesstoken", accesstoken);
+                            res.cookie("accesstoken", accesstoken,cookieOption);
                           
                             next();
                           } else {

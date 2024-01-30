@@ -14,14 +14,10 @@ const PORT=process.env.PORT;
 
 //middleware
 const app=express();
-app.use(cookieParser({
-    httpOnly:true,
-    secure:true,
-    sameSite:'none'
-}))
+app.use(cookieParser())
 app.use(cors({
     origin:[
-        " https://blue-green-greyhound-wear.cyclic.app"
+        "https://blue-green-greyhound-wear.cyclic.app"
     ],
     credentials:true
 }))

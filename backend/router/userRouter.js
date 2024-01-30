@@ -36,6 +36,11 @@ userRouter.post("/register",async(req,res)=>{
 
 userRouter.post("/login",async(req,res)=>{
     const {email,pass}=req.body
+    const cookieOption={
+        httpOnly:true,
+        secure:true,
+        sameSite:'none'
+    }
     try {
        
         const findUser= await UserModel.findOne({email})
@@ -44,8 +49,8 @@ userRouter.post("/login",async(req,res)=>{
             if(result){
                 const accesstoken=jwt.sign({userId:findUser._id,username:findUser.username},acc_secretKey,{expiresIn:"15m"})
                 const refreshtoken=jwt.sign({userId:findUser._id,username:findUser.username},ref_secretKey,{expiresIn:"30m"})
-                res.cookie("accesstoken",accesstoken)
-                res.cookie("refreshtoken",refreshtoken)
+                res.cookie("accesstoken",accesstoken,cookieOption)
+                res.cookie("refreshtoken",refreshtoken,cookieOption)
                 return res.status(200).send({msg:"Login successful!",accesstoken:accesstoken,refreshtoken:refreshtoken})
             }else{
                 return res.status(200).send({msg:"your password is wrong please correct it"})
