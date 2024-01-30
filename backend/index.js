@@ -14,14 +14,17 @@ const PORT=process.env.PORT;
 
 //middleware
 const app=express();
-app.use(cookieParser())
-app.use(cors({
-    origin:[
-        "https://blue-green-greyhound-wear.cyclic.app","http://127.0.0.1:5173/"
-    ],
-    credentials:true
-}))
 app.use(express.json())
+app.use(cookieParser())
+app.use(
+    cors({
+      origin: [
+        "https://blue-green-greyhound-wear.cyclic.app",
+        "http://127.0.0.1:5173",
+      ],
+      credentials: true,
+    })
+  );
 app.use("/user",userRouter)
 app.use("/notes",auth,noteRouter)
 
@@ -37,7 +40,7 @@ app.listen(PORT,async()=>{
         console.log("mongo connection is also build")
         console.log(`your server is running on Port : ${PORT}`)
     } catch (error) {
-        console.log({msg:"server is not running ",error:error.massage})
+        console.log({msg:"server is not running ",error:error})
     }
     
 })
