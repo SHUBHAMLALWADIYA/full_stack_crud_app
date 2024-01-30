@@ -17,7 +17,7 @@ const app=express();
 app.use(cookieParser())
 app.use(cors({
     origin:[
-        "https://blue-green-greyhound-wear.cyclic.app"
+        "https://blue-green-greyhound-wear.cyclic.app","http://127.0.0.1:5173/"
     ],
     credentials:true
 }))
