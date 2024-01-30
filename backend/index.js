@@ -14,8 +14,17 @@ const PORT=process.env.PORT;
 
 //middleware
 const app=express();
-app.use(cookieParser())
-app.use(cors())
+app.use(cookieParser({
+    httpOnly:true,
+    secure:true,
+    sameSite:'none'
+}))
+app.use(cors({
+    origin:[
+        " https://blue-green-greyhound-wear.cyclic.app"
+    ],
+    credentials:true
+}))
 app.use(express.json())
 app.use("/user",userRouter)
 app.use("/notes",auth,noteRouter)
