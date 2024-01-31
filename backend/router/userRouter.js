@@ -39,7 +39,7 @@ userRouter.post("/login",async(req,res)=>{
     const cookieOption={
         httpOnly:true,
         secure:true,
-        sameSite:'None'
+        sameSite:'none'
     }
     try {
        

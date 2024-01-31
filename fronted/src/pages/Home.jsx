@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import axios from "axios"
 
 function Home() {
-    const [data,setData]=useState([])
+    const [blogData,setBlogData]=useState([])
 
 
     const getAllBlogFromApi = async () => {
@@ -28,11 +28,11 @@ function Home() {
       <>
         {blogData.map((item,index)=>(
           <div  key={index}>
-  
+
             <h1 >{item.title}</h1>
             <p >{item.description}</p>
-            <button onClick={modalOpen}>Edit</button>
-            <button  className={styles.btn}>Delete</button>
+            <button >Edit</button>
+            <button >Delete</button>
           </div>
   ))}
   
