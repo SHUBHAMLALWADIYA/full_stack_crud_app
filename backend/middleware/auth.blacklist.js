@@ -34,20 +34,20 @@ const auth=async(req,res,next)=>{
                   req.body.userId=decoded.userId
                   req.body.username=decoded.username
                 }
-                console.log(req.url==`/update/:id`)
-                if(req.method=="PATCH"||req.method=="DELETE"){
-                    // const {id}=req.params
+                // console.log(req.url==`/update/:id`)
+                // if(req.method=="PATCH"||req.method=="DELETE"){
+                //     // const {id}=req.params
                    
-                    // const noteId=await NoteModel.findOne({_id:id})
-                 console.log("step 1")
+                //     // const noteId=await NoteModel.findOne({_id:id})
+                //  console.log("step 1")
                  
-                //  console.log(noteId)
-                //  console.log(noteId,decoded.userId)
-                    // if(noteId.userId==decoded.userId){
-                    //     console.log("checkID")
-                    //     next()
-                    // }
-                } 
+                // //  console.log(noteId)
+                // //  console.log(noteId,decoded.userId)
+                //     // if(noteId.userId==decoded.userId){
+                //     //     console.log("checkID")
+                //     //     next()
+                //     // }
+                // } 
                 next()
             }else{
                 if(err.message==="jwt expired"){
