@@ -29,25 +29,9 @@ const auth=async(req,res,next)=>{
         jwt.verify(accesstoken,process.env.accessToken_SecreteKey,async(err,decoded)=>{
             if(decoded){
              
-         
-                if(req.url=="/create"){
                   req.body.userId=decoded.userId
                   req.body.username=decoded.username
-                }
-                // console.log(req.url==`/update/:id`)
-                // if(req.method=="PATCH"||req.method=="DELETE"){
-                //     // const {id}=req.params
-                   
-                //     // const noteId=await NoteModel.findOne({_id:id})
-                //  console.log("step 1")
-                 
-                // //  console.log(noteId)
-                // //  console.log(noteId,decoded.userId)
-                //     // if(noteId.userId==decoded.userId){
-                //     //     console.log("checkID")
-                //     //     next()
-                //     // }
-                // } 
+            
                 next()
             }else{
                 if(err.message==="jwt expired"){

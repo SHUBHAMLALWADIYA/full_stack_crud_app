@@ -28,6 +28,11 @@ noteRouter.get("/",async(req,res)=>{
 noteRouter.patch("/update/:id",async(req,res)=>{
     const id=req.params.id
     try {
+      const userIdentity=req.body.userId
+      const userCreated= await NoteModel.findById({_id:id})
+      if(userCreated.userId!==userIdentity){
+         return res.status(401).send({msg:"Unauthorized user is find"})
+      }
       const user=await UserModel.find({_id})
        await NoteModel.findByIdAndUpdate({_id:id},req.body)
        return res.status(200).send({msg:"your note is updated",update:req.body})
@@ -39,6 +44,11 @@ noteRouter.patch("/update/:id",async(req,res)=>{
 noteRouter.delete("/delete/:id",async(req,res)=>{
     const id=req.params.id
     try {
+      const userIdentity=req.body.userId
+      const userCreated= await NoteModel.findById({_id:id})
+      if(userCreated.userId!==userIdentity){
+         return res.status(401).send({msg:"Unauthorized user is find"})
+      }
        await NoteModel.findByIdAndDelete({_id:id})
       return res.status(200).send({msg:"your note is deleted"})
     } catch (error) {
