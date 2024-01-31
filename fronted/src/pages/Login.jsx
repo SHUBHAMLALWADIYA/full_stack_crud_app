@@ -14,7 +14,7 @@ function Login() {
         try {
             const response = await axios.post(`https://blue-green-greyhound-wear.cyclic.app/user/login`,userLogin,{withCredentials:true})
             console.log(response.data)
-            
+            setuserLogin({email:"",pass:""})
         } catch (error) {
             console.log(error)
         }
