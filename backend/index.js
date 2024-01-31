@@ -21,7 +21,7 @@ app.use(
       origin: [
         "https://blue-green-greyhound-wear.cyclic.app",
         "http://127.0.0.1:5173",
-        "http://cap05155noteapp.netlify.app"
+        "https://cap05155noteapp.netlify.app"
       ],
       credentials: true,
     })
