@@ -15,7 +15,7 @@ const auth=async(req,res,next)=>{
     const cookieOption={
         httpOnly:true,
         secure:true,
-        sameSite:'none'
+        sameSite:'None'
     }
     const accesstoken=req.cookies.accesstoken;
     const refreshtoken=req.cookies.refreshtoken;
